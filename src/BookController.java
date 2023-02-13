@@ -38,5 +38,19 @@ public class BookController {
 
     }
 
+        
+public class BookController {
+    private final BookService bookservice;
+
+    @Autowired
+    public BookController(BookService bookservice) {
+        this.bookservice = bookservice;
+    }
+
+    @GetMapping
+    public BookVo<CreateBook> getBook(@PathVariable Long id) {
+        CreateBook createbook = bookservice.getBook(id);
+        return;
+    }
 }
 
