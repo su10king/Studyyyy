@@ -1,0 +1,25 @@
+public class BookController {
+
+    private BookService bookService;
+    private MemberService memberService;
+
+    public BookController() {
+        this.bookService = new BookService();
+        this.memberService = new MemberService();
+    }
+
+    public void addBook(int id, String title, String author) {
+        Book book = new Book(id, title, author);
+        bookService.addBook(book);
+    }
+
+    public List<Book> getAvailableBooks() {
+        return bookService.getAvailableBooks();
+    }
+
+    public void rentBook(int bookId, int memberId) {
+        Member member = memberService.getMember(memberId);
+        bookService.rentBook(bookId);
+        System.out.println(member.getName() + " rented a book with ID " + bookId);
+    }
+}
