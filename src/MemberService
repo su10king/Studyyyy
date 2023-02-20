@@ -1,0 +1,17 @@
+public class MemberService {
+
+    private List<Member> memberList = new ArrayList<>();
+
+    public void addMember(Member member) {
+        memberList.add(member);
+    }
+
+    public Member getMember(int memberId) {
+        for (Member member : memberList) {
+            if (member.getId() == memberId) {
+                return member;
+            }
+        }
+        throw new RuntimeException("Member not found with ID " + memberId);
+    }
+}
