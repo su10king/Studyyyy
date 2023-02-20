@@ -1,0 +1,22 @@
+public class BookService {
+
+    private List<Book> bookList = new ArrayList<>();
+
+    public void addBook(Book book) {
+        bookList.add(book);
+    }
+
+    public List<Book> getAvailableBooks() {
+        return bookList.stream().filter(Book::isAvailable).collect(Collectors.toList());
+    }
+
+    public void rentBook(int bookId) {
+        for (Book book : bookList) {
+            if (book.getId() == bookId) {
+                book.setAvailable(false);
+                return;
+            }
+        }
+        throw new RuntimeException("Book not found with ID " + bookId);
+    }
+}
